@@ -1,19 +1,7 @@
 import { getSheetData } from './utils/sheets.js'; 
 import cron from 'node-cron';
-
-
-(async () => {
-  try {
-    const data = await getSheetData('ГРУППЫ!A1:F5');
-    console.log('✅ Успішне підключення до Google Sheets!');
-    console.log(data);
-  } catch (error) {
-    console.error('❌ Помилка:', error.message);
-  }
-})();
 import { Telegraf, Markup, session } from 'telegraf';
 import dotenv from 'dotenv';
-import { getSheetData } from './utils/sheets.js';
 
 dotenv.config();
 
@@ -25,6 +13,7 @@ if (missing.length) {
   process.exit(1);
 }
 
+console.log('BOT_TOKEN:', process.env.BOT_TOKEN ? '✅ знайдено' : '❌ немає');
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
 // ── Сессия для хранения выбранного города и пагинации
