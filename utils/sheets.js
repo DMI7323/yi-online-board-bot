@@ -8,9 +8,9 @@ export async function getSheetData(range) {
     const auth = new google.auth.GoogleAuth({
       credentials: {
         type: 'service_account',
-        project_id: process.env.GOOGLE_PROJECT_ID,
+        project_id: process.env.GOOGLE_PROJECT_ID || 'yi-online-board-bot',
         private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-        client_email: process.env.GOOGLE_CLIENT_EMAIL,
+        client_email: process.env.GOOGLE_SERVICE_EMAIL,
       },
       scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
     });

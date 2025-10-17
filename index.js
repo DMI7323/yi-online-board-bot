@@ -14,10 +14,14 @@ if (!process.env.BOT_TOKEN) {
 // === Ініціалізація бота ===
 const bot = new Telegraf(process.env.BOT_TOKEN);
 bot.use(session());
+bot.catch((err, ctx) => {
+  console.error('❌ Помилка обробки оновлення:', err);
+});
+
 
 // === Express сервер для Render ===
 const app = express();
-app.get('/', (req, res) => res.send('✅ YI Courses Bot is alive'));
+app.get('/', (req, res) => res.send('✅ YIschool.OnlineBoard працює'));
 app.listen(process.env.PORT || 3000, () =>
   console.log(`🌐 Port ${process.env.PORT || 3000} bound for Render`)
 );
