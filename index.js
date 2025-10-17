@@ -225,3 +225,5 @@ http
     res.end('Bot is running\n');
   })
   .listen(PORT, () => console.log(`🌐 Port ${PORT} opened for Render`));
+  await bot.telegram.sendMessage(process.env.DEFAULT_CHAT_ID, '✅ Бот бачить групу і готовий працювати!');
+
