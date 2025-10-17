@@ -215,3 +215,13 @@ cron.schedule('0 8 * * *', async () => {
     console.error('❌ Помилка автонагадування:', err);
   }
 });
+import http from 'http';
+const PORT = process.env.PORT || 10000;
+
+// створюємо простий сервер, щоб Render бачив відкритий порт
+http
+  .createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('Bot is running\n');
+  })
+  .listen(PORT, () => console.log(`🌐 Port ${PORT} opened for Render`));
