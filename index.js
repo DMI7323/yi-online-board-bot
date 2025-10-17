@@ -16,6 +16,13 @@ const bot = new Telegraf(process.env.BOT_TOKEN);
 bot.use(session()
 );
 
+bot.use((ctx, next) => {
+  if (!ctx.session) ctx.session = {};
+  if (!ctx.session.city) ctx.session.city = 'Усі';
+  return next();
+});
+
+
 // === Express сервер для Render ===
 const app = express();
 app.get('/', (req, res) => res.send('✅ YIschool.OnlineBoard працює'));
