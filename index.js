@@ -13,11 +13,8 @@ if (!process.env.BOT_TOKEN) {
 
 // === Ініціалізація бота ===
 const bot = new Telegraf(process.env.BOT_TOKEN);
-bot.use(session());
-bot.catch((err, ctx) => {
-  console.error('❌ Помилка обробки оновлення:', err);
-});
-
+bot.use(session()
+);
 
 // === Express сервер для Render ===
 const app = express();
@@ -109,9 +106,14 @@ process.on('uncaughtException', (err) => console.error('💥 Uncaught Exception:
 process.on('unhandledRejection', (err) => console.error('⚠️ Unhandled Rejection:', err));
 
 // === Запуск ===
+console.log('✅ Ініціалізація бота...');
+
 bot.launch()
   .then(() => {
     console.log('🚀 Бот запущено у polling режимі');
-    bot.telegram.sendMessage(process.env.DEFAULT_CHAT_ID, '✅ Бот запущено та готовий до роботи!');
+    bot.telegram.sendMessage(
+      process.env.ADMIN_CHAT_ID, 
+      '✅ Бот успішно підключено до Telegram і готовий працювати!'
+    );
   })
   .catch((e) => console.error('❌ Помилка запуску:', e));
