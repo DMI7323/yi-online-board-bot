@@ -226,4 +226,10 @@ http
   })
   .listen(PORT, () => console.log(`🌐 Port ${PORT} opened for Render`));
   await bot.telegram.sendMessage(process.env.DEFAULT_CHAT_ID, '✅ Бот бачить групу і готовий працювати!');
+process.on('uncaughtException', err => {
+  console.error('❌ Uncaught Exception:', err);
+});
+process.on('unhandledRejection', err => {
+  console.error('❌ Unhandled Promise Rejection:', err);
+});
 
